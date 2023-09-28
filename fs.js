@@ -8,8 +8,9 @@ fs.readFile('data.txt', 'utf-8', (err, data) => {
     } else {
         let lines = data.split('\n');
         for (const line in lines) {
-            console.log(lines[line].split(','))
+            array.push((lines[line].split(',')))
         }
+        console.log(array1)
     }
 })
 
