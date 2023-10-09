@@ -5,18 +5,30 @@ readFile('sql.txt', 'utf-8', (err, data) => {
         console.log(err)
     }
     
+       
     const keywords = /^(SELECT|FROM|WHERE|CREATE|PROCEDURE|BEGIN|END)$/i;
-    const operators = /^(=|,|'|;)$/;
-
-    const tokens = data.split(/\s+/).filter(token => token.length > 0);
-
-    tokens.map(token => {
-        if(token.match(keywords)){
-            console.log('wachapen')
-        }
-    })
+    const operators = /^(=|,|'|;|\(|\)|@)$/;
+   
     
-})
+    const tokens = data
+        .split(/(\bSELECT\b|\bFROM\b|\bWHERE\b|\bCREATE\b|\bPROCEDURE\b|\bBEGIN\b|\bEND\b|,|'|\(|\)|;|\s+)/)
+        .filter(token => token && !token.match(/^\s+$/));
+
+    console.log(tokens);
+       
+    tokens.map(token => {
+        if (token.match(keywords)) {
+            console.log(`Palabra reservada: ${token}`);
+        } else if (token.match(operators)) {
+            console.log(`Operador: ${token}`);
+        } else {
+            console.log(`Palabra: ${token}`);
+        }
+    });
+});
+   
+   
+   
 
 
 

@@ -1,6 +1,6 @@
 SELECT nombre, puesto
 FROM Personal
-WHERE nombre='Daniel'
+WHERE nombre = 'Daniel'
 
 CREATE DEFINER = 'admin'@'localhost' PROCEDURE account_count()
 BEGIN
