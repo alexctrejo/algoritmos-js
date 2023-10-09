@@ -6,8 +6,10 @@ readFile('sql.txt', 'utf-8', (err, data) => {
     }
     
     const tokens = data
+        //Separa primero por todos los caracteres que estan aqui debajo
         .split(/(,|'|\(|\)|;|:|_|\s+|\.)/)
-        .filter(token => token && !token.match(/^\s+$/));
+        // verifica si el token no está vacío y no consiste solo en espacios en blanco
+        .filter((token) => token && !token.match(/^\s+$/));
     console.log(tokens);
        
 });
