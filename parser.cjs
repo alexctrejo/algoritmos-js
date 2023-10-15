@@ -2,6 +2,7 @@ const fs = require('node:fs')
 
 const simbolos = ['.', ',', '-', ' ', ';', '*', '(', ')', ':', "", '', '\n', '\r']; 
 const palabras = [];
+const coincidencias = [];
 let palabraActual = "";
 
 fs.readFile('sql.txt', 'utf-8', (err, data) => {
@@ -25,6 +26,18 @@ fs.readFile('sql.txt', 'utf-8', (err, data) => {
             palabraActual += data[i];
         }
     }
-    console.log(palabras);
+
+    fs.readFile('sqlkeywords.txt', 'utf-8', (err, data) => {
+        if (err) {
+            console.log(err);
+        }
+        for (let i = 0; i < palabras.length; i++) {
+            if (data.includes(palabras[i])) {
+                console.log(`I found your word: ${palabras[i]}`);
+            } 
+            
+        }
+        
+    });
 
 });
