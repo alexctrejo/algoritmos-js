@@ -65,11 +65,19 @@ fs.readFile('sqlkeywords.txt', 'utf-8', (err, data) => {
     console.log(tokens);
 
     // Ajustar la lógica según la regla sintáctica.
-    let regla = 0;
+    let regla = [];
     if (tokens[0] == 655) {
-        regla = reglasSintacticas.SELECT;
+        regla = reglasSintacticas["SELECT"];
     } else if (tokens[0] == 772){
-        regla = reglasSintacticas.UPDATE1;
+        regla = reglasSintacticas["UPDATE"];
+    } else if (tokens[0] == 360){
+        regla = reglasSintacticas["INSERT INTO"];
+    } else if (tokens[0] == 197){
+        regla = reglasSintacticas["CREATE"];
+    } else if (tokens[0] == 229){
+        regla = reglasSintacticas["DELETE"];
+    } else {
+        console.log("No se reconoce la regla sintáctica");
     }
     for (let k = 0; k < regla.length; k++) {
         console.log(`token ${regla[k]} VALIDO`);
